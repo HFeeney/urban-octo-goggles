@@ -79,3 +79,4 @@ class Puzzle:
         for i in range(6, 9):
             Surface.blit(self.tiles[self.positions[i]], ((i - 6) * WIDTH / 3, HEIGHT * 2 / 3))
 
+ 
