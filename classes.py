@@ -1,19 +1,47 @@
 import pygame as pg
+import random
+from settings import * 
+
+def check_solvable(arr):
+    inversions = 0
+    for i in range(7):
+        for j in range(i + 1, 8):
+            if (arr[i] > arr[j]):
+                inversions += 1
+    if (inversions % 2 == 0):
+        return True
+    return False
+
 
 class Puzzle:
     def __init__(self, x, y, side):
         self.surface = pg.Surface((side, side))        
-        self.image = pg.image.load("Final Design.jpg")
+        self.image = pg.transform.scale(pg.image.load("Final Design.jpg").convert(), (WIDTH, HEIGHT))
         self.surface.blit(self.image, (0, 0))
         self.side = side
         self.rect = self.surface.get_rect()
         self.rect.topleft = (x, y)
-        self.tiles = [[0]*3]*3
+        self.tiles = [0]*8
+        self.positions = [0, 1, 2, 3, 4, 5, 6, 7]
         for i in range(3):
             for j in range(3):
-                self.tiles[i][j] = pg.Surface((self.side / 3, self.side / 3))
-                self.tiles[i][j].blit(self.image, (0, 0), (self.side / 3 * i, self.side / 3 * j, self.side / 3, self.side / 3))
+                if (i == 2 and j == 2):
+                    pass
+                else:
+                    self.tiles[i * 3 + j] = pg.Surface((self.side / 3, self.side / 3))
+                    self.tiles[i * 3 + j].blit(self.image, (0, 0), (self.side / 3 * j, self.side / 3 * i, self.side / 3, self.side / 3))
+        self.shuffle_tiles()
 
-    def draw(self):
-        pass
+    def shuffle_tiles(self):
+        random.shuffle(self.positions)
+        while (check_solvable(self.positions) != True):
+            random.shuffle(self.positions)
+
+    def draw(self, Surface):
+        for i in range(3):
+            Surface.blit(self.tiles[self.positions[i]], (i * WIDTH / 3, 0))
+        for i in range(3, 6):
+            Surface.blit(self.tiles[self.positions[i]], ((i - 3) * WIDTH / 3, HEIGHT / 3))
+        for i in range(6, 8):
+            Surface.blit(self.tiles[self.positions[i]], ((i - 6) * WIDTH / 3, HEIGHT * 2 / 3))
 

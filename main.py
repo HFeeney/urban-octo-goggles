@@ -11,7 +11,7 @@ class Game:
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         self.running = True
-        self.puzzle = Puzzle(0, 0, 500)
+        self.puzzle = Puzzle(0, 0, WIDTH)
 
     def new(self):
         # start a new game
@@ -42,6 +42,7 @@ class Game:
     def draw(self):
         # Game Loop - draw
         self.screen.fill(WHITE)
+        self.puzzle.draw(self.screen)
         # *after* drawing everything, flip the display
         pg.display.flip()
 

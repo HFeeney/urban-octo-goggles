@@ -1,6 +1,6 @@
 TITLE = "TILE PUZZLE"
-WIDTH = 500
-HEIGHT = 500
+WIDTH = 600
+HEIGHT = 600
 FPS = 60
 
 # define colors
