@@ -28,7 +28,8 @@ class Game:
 
     def update(self):
         # Game Loop - Update
-        pass
+        if (self.puzzle.check_solved()):
+            self.playing = False
 
     def events(self):
         # Game Loop - events
@@ -38,6 +39,15 @@ class Game:
                 if self.playing:
                     self.playing = False
                 self.running = False
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_UP:
+                    self.puzzle.move("UP")
+                elif event.key == pg.K_DOWN:
+                    self.puzzle.move("DOWN")
+                elif event.key == pg.K_LEFT:
+                    self.puzzle.move("LEFT")
+                elif event.key == pg.K_RIGHT:
+                    self.puzzle.move("RIGHT")
 
     def draw(self):
         # Game Loop - draw
@@ -48,11 +58,12 @@ class Game:
 
     def show_start_screen(self):
         # game splash/start screen
-        pass
+        print("START")
 
     def show_go_screen(self):
         # game over/continue
-        pass
+        print("SOLVED")
+        self.running = False
 
 g = Game()
 g.show_start_screen()
