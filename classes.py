@@ -38,6 +38,7 @@ class Puzzle:
             if (item != check):
                 return False
             check += 1
+        self.tiles[8].blit(self.image, (0, 0), (self.side / 3 * 2, self.side / 3 * 2, self.side / 3, self.side / 3))
         return True
 
     def shuffle_tiles(self):
@@ -78,5 +79,3 @@ class Puzzle:
             Surface.blit(self.tiles[self.positions[i]], ((i - 3) * WIDTH / 3, HEIGHT / 3))
         for i in range(6, 9):
             Surface.blit(self.tiles[self.positions[i]], ((i - 6) * WIDTH / 3, HEIGHT * 2 / 3))
-
- 
