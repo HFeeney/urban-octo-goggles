@@ -1,1 +1,1 @@
-HI
+This is a game where you shift tiles to complete a picture!
