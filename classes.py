@@ -5,7 +5,7 @@ from settings import *
 class Puzzle:
     def __init__(self, x, y, side):
         self.surface = pg.Surface((side, side))        
-        self.image = pg.transform.scale(pg.image.load("Final Design.jpg").convert(), (WIDTH, HEIGHT))
+        self.image = pg.transform.scale(pg.image.load("charles2.png").convert(), (WIDTH, HEIGHT))
         self.surface.blit(self.image, (0, 0))
         self.side = side
         self.rect = self.surface.get_rect()
@@ -17,7 +17,7 @@ class Puzzle:
             for j in range(3):
                 self.tiles[i * 3 + j] = pg.Surface((self.side / 3, self.side / 3))
                 if (i == 2 and j == 2):
-                    self.tiles[8].fill(WHITE)
+                    self.tiles[8].fill(YELLOW)
                 else:
                     self.tiles[i * 3 + j].blit(self.image, (0, 0), (self.side / 3 * j, self.side / 3 * i, self.side / 3, self.side / 3))
         self.shuffle_tiles()
